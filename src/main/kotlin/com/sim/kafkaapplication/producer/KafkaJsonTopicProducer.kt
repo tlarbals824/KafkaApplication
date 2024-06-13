@@ -5,7 +5,7 @@ import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 
 @Component
-class KafkaMyProducer(
+class KafkaJsonTopicProducer(
     private val kafkaTemplate: KafkaTemplate<String, MyMessage>,
 ) {
 

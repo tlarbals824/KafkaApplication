@@ -48,6 +48,9 @@ dependencies {
     // jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    // configuration processor
+    implementation("org.springframework.boot:spring-boot-configuration-processor")
+
 }
 
 kotlin {
