@@ -1,5 +1,6 @@
 package com.sim.kafkaapplication.consumer
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.sim.kafkaapplication.model.MyMessage
 import com.sim.kafkaapplication.model.Topic
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -12,17 +13,21 @@ import java.util.concurrent.ConcurrentHashMap
 private val logger = KotlinLogging.logger {}
 
 @Component
-class KafkaJsonTopicConsumer {
+class KafkaJsonTopicConsumer(
+    private val objectMapper: ObjectMapper
+) {
 
     private val idHistoryMap = ConcurrentHashMap<String, Int>()
 
     @KafkaListener(
         topics = [Topic.MY_JSON_TOPIC],
         groupId = "test-consumer-group",
-        containerFactory = "kafkaListenerContainerFactory"
+        containerFactory = "kafkaListenerContainerFactory",
+        concurrency = "3"
     )
-    fun apply(message: ConsumerRecord<String, MyMessage>, acknowledgment: Acknowledgment) {
-        printPayloadIfFirstMessage(message.value())
+    fun apply(messageString: ConsumerRecord<String, String>, acknowledgment: Acknowledgment) {
+        val message = objectMapper.readValue(messageString.value(), MyMessage::class.java)
+        printPayloadIfFirstMessage(message)
         acknowledgment.acknowledge()
     }
 

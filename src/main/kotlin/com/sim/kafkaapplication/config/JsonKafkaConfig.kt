@@ -2,6 +2,7 @@ package com.sim.kafkaapplication.config
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
+import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -23,26 +24,27 @@ class JsonKafkaConfig {
     }
 
     @Bean
-    fun consumerFactory(kafkaProperties: KafkaProperties): ConsumerFactory<String, Any> {
+    fun consumerFactory(kafkaProperties: KafkaProperties): ConsumerFactory<String, String> {
         val props = mapOf(
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperties.bootstrapServers,
-            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to kafkaProperties.consumer.keyDeserializer,
-            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to kafkaProperties.consumer.valueDeserializer,
             JsonDeserializer.TRUSTED_PACKAGES to "*",
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
             ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG to "false",
             ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "false",
         )
-        return DefaultKafkaConsumerFactory(props)
+        return DefaultKafkaConsumerFactory(
+            props,
+            StringDeserializer(),
+            StringDeserializer()
+        )
     }
 
     @Bean
     fun kafkaListenerContainerFactory(
-        consumerFactory: ConsumerFactory<String, Any>
-    ): ConcurrentKafkaListenerContainerFactory<String, Any> {
-        return ConcurrentKafkaListenerContainerFactory<String, Any>().apply {
+        consumerFactory: ConsumerFactory<String, String>
+    ): ConcurrentKafkaListenerContainerFactory<String, String> {
+        return ConcurrentKafkaListenerContainerFactory<String, String>().apply {
             setConsumerFactory(consumerFactory)
-            setConcurrency(1)
             containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
         }
     }

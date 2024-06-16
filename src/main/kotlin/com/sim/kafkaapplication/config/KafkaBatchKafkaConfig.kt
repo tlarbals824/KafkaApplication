@@ -42,7 +42,6 @@ class KafkaBatchKafkaConfig {
     ): ConcurrentKafkaListenerContainerFactory<String, String> {
         return ConcurrentKafkaListenerContainerFactory<String, String>().apply {
             setConsumerFactory(batchConsumerFactory)
-            setConcurrency(1)
             isBatchListener = true
             containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
         }

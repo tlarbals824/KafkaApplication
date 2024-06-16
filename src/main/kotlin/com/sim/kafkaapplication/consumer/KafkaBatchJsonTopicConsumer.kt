@@ -19,7 +19,8 @@ class KafkaBatchJsonTopicConsumer(
      @KafkaListener(
          topics = [Topic.MY_JSON_TOPIC],
          groupId = "batch-test-consumer-group",
-         containerFactory = "batchKafkaListenerContainerFactory"
+         containerFactory = "batchKafkaListenerContainerFactory",
+         concurrency = "3"
      )
      fun apply(messages: List<ConsumerRecord<String, String>>, acknowledgment: Acknowledgment) {
          logger.info { "[Batch Consumer] Received ${messages.size} messages" }
