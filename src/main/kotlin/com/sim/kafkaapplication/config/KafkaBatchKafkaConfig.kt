@@ -25,7 +25,8 @@ class KafkaBatchKafkaConfig {
             JsonDeserializer.TRUSTED_PACKAGES to "*",
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
             ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG to "false",
-            ConsumerConfig.MAX_POLL_RECORDS_CONFIG to ConsumerConfig.DEFAULT_MAX_POLL_RECORDS
+            ConsumerConfig.MAX_POLL_RECORDS_CONFIG to ConsumerConfig.DEFAULT_MAX_POLL_RECORDS,
+            ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "false",
         )
         return DefaultKafkaConsumerFactory(
             props,
@@ -43,7 +44,7 @@ class KafkaBatchKafkaConfig {
             setConsumerFactory(batchConsumerFactory)
             setConcurrency(1)
             isBatchListener = true
-            containerProperties.ackMode = ContainerProperties.AckMode.BATCH
+            containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
         }
     }
 }
