@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.*
+import org.springframework.kafka.listener.ContainerProperties
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
 @Configuration
@@ -29,7 +30,8 @@ class JsonKafkaConfig {
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to kafkaProperties.consumer.valueDeserializer,
             JsonDeserializer.TRUSTED_PACKAGES to "*",
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
-            ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG to "false"
+            ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG to "false",
+            ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "false",
         )
         return DefaultKafkaConsumerFactory(props)
     }
@@ -41,6 +43,7 @@ class JsonKafkaConfig {
         return ConcurrentKafkaListenerContainerFactory<String, Any>().apply {
             setConsumerFactory(consumerFactory)
             setConcurrency(1)
+            containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
         }
     }
 
