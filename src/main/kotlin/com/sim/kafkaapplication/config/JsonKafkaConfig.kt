@@ -50,7 +50,8 @@ class JsonKafkaConfig {
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperties.bootstrapServers,
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to kafkaProperties.producer.keySerializer,
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to kafkaProperties.producer.valueSerializer,
-            ProducerConfig.ACKS_CONFIG to kafkaProperties.producer.acks
+            ProducerConfig.ACKS_CONFIG to kafkaProperties.producer.acks,
+            ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG to "true"
         )
         return DefaultKafkaProducerFactory(props)
     }
