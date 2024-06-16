@@ -5,7 +5,7 @@ import com.sim.kafkaapplication.model.Topic
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 
-@Component
+//@Component
 class KafkaSecondTopicProducer(
     private val kafkaTemplate: KafkaTemplate<String, String>,
 ) {

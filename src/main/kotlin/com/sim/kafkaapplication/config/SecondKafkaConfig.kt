@@ -15,7 +15,7 @@ import org.springframework.kafka.core.*
 import org.springframework.kafka.support.serializer.JsonDeserializer
 import org.springframework.web.bind.annotation.PostMapping
 
-@Configuration
+//@Configuration
 class SecondKafkaConfig {
 
     @Bean
