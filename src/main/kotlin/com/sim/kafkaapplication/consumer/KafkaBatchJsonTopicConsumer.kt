@@ -3,10 +3,13 @@ package com.sim.kafkaapplication.consumer
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.sim.kafkaapplication.model.MyMessage
 import com.sim.kafkaapplication.model.Topic
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Component
+
+private val logger = KotlinLogging.logger {}
 
 @Component
 class KafkaBatchJsonTopicConsumer(
@@ -19,10 +22,10 @@ class KafkaBatchJsonTopicConsumer(
          containerFactory = "batchKafkaListenerContainerFactory"
      )
      fun apply(messages: List<ConsumerRecord<String, String>>, acknowledgment: Acknowledgment) {
-         println("[Batch Consumer]Received ${messages.size} messages")
+         logger.info { "[Batch Consumer] Received ${messages.size} messages" }
          messages.forEach{
              val message = objectMapper.readValue(it.value(), MyMessage::class.java)
-             println("[Batch Consumer]Received message: $message, raw message: ${it.value()}")
+             logger.info { "[Batch Consumer] Received message: $message" }
          }
          acknowledgment.acknowledge()
      }

@@ -51,6 +51,8 @@ dependencies {
     // configuration processor
     implementation("org.springframework.boot:spring-boot-configuration-processor")
 
+    // Kotlin logger
+    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
 }
 
 kotlin {
