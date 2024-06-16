@@ -16,7 +16,7 @@ class JsonKafkaConfig {
 
     @Bean
     @Primary
-    @ConfigurationProperties(prefix = "spring.kafka.json")
+    @ConfigurationProperties(prefix = "spring.kafka")
     fun kafkaProperties(): KafkaProperties {
         return KafkaProperties()
     }

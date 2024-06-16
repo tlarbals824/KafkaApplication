@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 class MyController(
 //    private val cloudStreamMyProducer: CloudStreamMyProducer
     private val kafkaJsonTopicProducer: KafkaJsonTopicProducer,
-    private val kafkaSecondTopicProducer: KafkaSecondTopicProducer
+//    private val kafkaSecondTopicProducer: KafkaSecondTopicProducer
 ) {
 
     @PostMapping("/message")
@@ -23,11 +23,11 @@ class MyController(
     }
 
 
-    @PostMapping("/second-message/{key}")
-    fun secondMessage(
-        @RequestBody message: String,
-        @PathVariable key: String
-    ){
-        kafkaSecondTopicProducer.sendMessage(key, message)
-    }
+//    @PostMapping("/second-message/{key}")
+//    fun secondMessage(
+//        @RequestBody message: String,
+//        @PathVariable key: String
+//    ){
+//        kafkaSecondTopicProducer.sendMessage(key, message)
+//    }
 }
