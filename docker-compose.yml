@@ -15,7 +15,7 @@ services:
     container_name: kafka1
     hostname: kafka1
     ports:
-      - "19092"
+      - 19092
       - "9092:9092"
     environment:
       - KAFKA_BROKER_ID=1
@@ -69,7 +69,7 @@ services:
     image: 'provectuslabs/kafka-ui:v0.7.1'
     container_name: kafka-ui
     ports:
-      - "8081:8080"
+      - "8089:8080"
     environment:
       - KAFKA_CLUSTERS_0_NAME=local
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka1:19092,kafka2:19092,kafka3:19092
@@ -78,30 +78,11 @@ services:
       - kafka1
       - kafka2
       - kafka3
-  cmak:
-    image: 'hlebalbau/kafka-manager:3.0.0.5'
-    container_name: cmak
+  external-server:
+    image: 'gustkd3/fastcampus-kafka-2-2-ugc'
+    container_name: external-server
     ports:
-      - "9000:9000"
-    environment:
-      - ZK_HOSTS=zookeeper:2181
-    depends_on:
-      - zookeeper
-      - kafka1
-      - kafka2
-      - kafka3
-  redpanda-console:
-    image: 'docker.redpanda.com/redpandadata/console:v2.3.7'
-    container_name: redpanda-console
-    ports:
-      - "8989:8080"
-    environment:
-      - KAFKA_BROKERS=kafka1:19092,kafka2:19092,kafka3:19092
-    depends_on:
-      - zookeeper
-      - kafka1
-      - kafka2
-      - kafka3
+      - "8088:8080"
   mysql:
     image: 'mysql:8.0.35'
     container_name: mysql
@@ -114,3 +95,64 @@ services:
       - MYSQL_PASSWORD=mypassword
     volumes:
       - ./.data/mysql:/var/lib/mysql
+#  mongodb:
+#    image: 'mongo:7.0.3'
+#    container_name: mongodb
+#    ports:
+#      - "27017:27017"
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=rootuser
+#      - MONGO_INITDB_ROOT_PASSWORD=1234
+#      - MONGO_INITDB_DATABASE=campus
+#    volumes:
+#      - ./.data/mongodb:/data/db
+#  redis:
+#    image: 'redis:6.0.20'
+#    container_name: redis
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - ./.data/redis:/data
+#  elasticsearch:
+#    image: 'docker.elastic.co/elasticsearch/elasticsearch:7.10.2'
+#    container_name: elasticsearch
+#    environment:
+#      - discovery.type=single-node
+#      - TZ=Asia/Seoul
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    volumes:
+#      - ./.data/elasticsearch:/usr/share/elasticsearch/data
+#  kibana:
+#    image: 'docker.elastic.co/kibana/kibana:7.10.2'
+#    container_name: kibana
+#    environment:
+#      ELASTICSEARCH_URL: http://elasticsearch:9200
+#      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch
+#  filebeat:
+#    image: 'docker.elastic.co/beats/filebeat:7.10.2'
+#    container_name: filebeat
+#    volumes:
+#      - ./.data/tomcat/logs:/usr/share/filebeat/logs
+#    depends_on:
+#      - logstash
+#      - zookeeper
+#      - kafka1
+#      - kafka2
+#      - kafka3
+#  logstash:
+#    image: 'docker.elastic.co/logstash/logstash:7.10.2'
+#    container_name: logstash
+#    ports:
+#      - "5044:5044"
+#    depends_on:
+#      - elasticsearch
+#      - zookeeper
+#      - kafka1
+#      - kafka2
+#      - kafka3

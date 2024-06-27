@@ -1,0 +1,3 @@
+external-server:
+  metadata:
+    url: localhost:8088
