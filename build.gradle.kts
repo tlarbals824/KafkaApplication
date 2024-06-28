@@ -6,7 +6,6 @@ plugins {
     id("io.spring.dependency-management") version "1.1.5"
     kotlin("jvm") version "1.9.24"
     kotlin("plugin.spring") version "1.9.24"
-    kotlin("plugin.jpa") version "1.9.24"
 }
 
 
@@ -16,11 +15,8 @@ allprojects {
         plugin("io.spring.dependency-management")
         plugin("kotlin")
         plugin("kotlin-spring")
-        plugin("kotlin-jpa")
-
 
         plugin("org.jetbrains.kotlin.plugin.spring")
-        plugin("org.jetbrains.kotlin.plugin.jpa")
     }
 
     val springCloudVersion by extra("2023.0.2")
@@ -62,23 +58,10 @@ allprojects {
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-        testImplementation("org.springframework.cloud:spring-cloud-stream-test-binder")
-        testImplementation("io.projectreactor:reactor-test")
 
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-
-
-        // spring cloud
-//    implementation("org.springframework.cloud:spring-cloud-stream")
-//    implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka")
-
-        // kafka
-        implementation("org.springframework.kafka:spring-kafka")
-
 
         // jackson
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

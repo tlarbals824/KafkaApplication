@@ -42,3 +42,6 @@ out/
 
 ### docker volumes ###
 .data
+
+### .env file ###
+*.env

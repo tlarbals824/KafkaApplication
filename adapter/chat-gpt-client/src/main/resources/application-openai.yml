@@ -1,0 +1,2 @@
+key:
+  open_ai: ${OPEN_API_KEY}

@@ -1,4 +1,4 @@
-package com.sim.mysql;
+package com.sim.mysql.post;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

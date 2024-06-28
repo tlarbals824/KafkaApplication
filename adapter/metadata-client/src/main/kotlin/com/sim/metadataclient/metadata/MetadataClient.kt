@@ -5,11 +5,11 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Component
 class MetadataClient(
-    private val webClient: WebClient
+    private val metadataWebClient: WebClient
 ){
 
     fun getCategoryById(id: String): CategoryResponse{
-        return webClient.get()
+        return metadataWebClient.get()
             .uri("/categories/${id}")
             .retrieve()
             .bodyToMono(CategoryResponse::class.java)
@@ -17,7 +17,7 @@ class MetadataClient(
     }
 
     fun getUserById(id: String): UserResponse{
-        return webClient.get()
+        return metadataWebClient.get()
             .uri("/user/${id}")
             .retrieve()
             .bodyToMono(UserResponse::class.java)
@@ -25,7 +25,7 @@ class MetadataClient(
     }
 
     fun getFollowerIdsByUserId(userId: String): List<String>{
-        return webClient.get()
+        return metadataWebClient.get()
             .uri("/followers?followingId=${userId}")
             .retrieve()
             .bodyToFlux(String::class.java)

@@ -36,7 +36,7 @@ data class Post(
             categoryId = this.categoryId,
             createdAt = this.createdAt,
             updatedAt = LocalDateTime.now(),
-            deletedAt = LocalDateTime.now()
+            deletedAt = updatedAt
         )
     }
 

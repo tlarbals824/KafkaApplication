@@ -1,9 +1,9 @@
-package com.sim.mysql
+package com.sim.mysql.post
 
 import com.sim.core.PostPort
 import com.sim.domain.post.Post
-import com.sim.mysql.PostEntityConverter.toEntity
-import com.sim.mysql.PostEntityConverter.toModel
+import com.sim.mysql.post.PostEntityConverter.toEntity
+import com.sim.mysql.post.PostEntityConverter.toModel
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 

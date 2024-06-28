@@ -1,5 +1,6 @@
 package com.sim.postusecase
 
+import com.sim.core.OriginalPostMessageProducePort
 import com.sim.core.PostPort
 import com.sim.domain.post.Post
 import org.springframework.stereotype.Service
@@ -7,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 internal class PostCreateService(
-    private val postPort: PostPort
+    private val postPort: PostPort,
+    private val postMessageProducer: OriginalPostMessageProducePort
 ) : PostCreateUsecase {
 
     @Transactional
@@ -18,6 +20,7 @@ internal class PostCreateService(
             userId = command.userId,
             categoryId = command.categoryId
         )
+        postMessageProducer.sendCreateMessage(post)
         return postPort.save(post)
     }
 }
