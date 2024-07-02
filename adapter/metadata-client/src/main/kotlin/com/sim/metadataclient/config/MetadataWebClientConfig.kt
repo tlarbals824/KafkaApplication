@@ -16,7 +16,6 @@ class MetadataWebClientConfig(
 
     @Bean(name = ["metadataWebClient"])
     fun metadataWebClient(): WebClient{
-        logger.info { metadataApiUrl }
         return WebClient.builder()
             .baseUrl("http://$metadataApiUrl")
             .build()

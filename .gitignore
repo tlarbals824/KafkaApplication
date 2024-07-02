@@ -45,3 +45,4 @@ out/
 
 ### .env file ###
 *.env
+local.env

@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      username: user
+      password: 1234
+      authentication-database: admin
+      uri: mongodb://user:1234@localhost:27017/campus?authSource=admin

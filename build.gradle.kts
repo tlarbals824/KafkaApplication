@@ -20,6 +20,7 @@ allprojects {
     }
 
     val springCloudVersion by extra("2023.0.2")
+    val springModulithVersion by extra("1.2.1")
 
 
 
@@ -57,9 +58,11 @@ allprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.springframework.modulith:spring-modulith-starter-core")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+        testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
@@ -78,6 +81,7 @@ allprojects {
     dependencyManagement {
         imports {
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+            mavenBom("org.springframework.modulith:spring-modulith-bom:$springModulithVersion")
         }
     }
 
@@ -85,5 +89,6 @@ allprojects {
         useJUnitPlatform()
     }
 }
+
 
 
