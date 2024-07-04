@@ -16,6 +16,7 @@ include(":adapter:mysql")
 include(":adapter:kafka")
 include(":adapter:chat-gpt-client")
 include(":adapter:mongodb")
+include(":adapter:redis")
 
 
 include(":worker")

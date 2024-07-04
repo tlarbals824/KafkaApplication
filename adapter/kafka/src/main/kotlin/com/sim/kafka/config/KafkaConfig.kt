@@ -60,6 +60,7 @@ class KafkaConfig {
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
             ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG to false,
             ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to false,
+
         )
         return DefaultKafkaConsumerFactory(props)
     }

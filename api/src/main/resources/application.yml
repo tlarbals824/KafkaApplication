@@ -6,3 +6,4 @@ spring:
       - openai
       - kafka
       - mongo
+      - redis

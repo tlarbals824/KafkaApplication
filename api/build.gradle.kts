@@ -11,6 +11,7 @@ dependencies{
     implementation(project(":adapter:kafka"))
     implementation(project(":adapter:chat-gpt-client"))
     implementation(project(":adapter:mongodb"))
+    implementation(project(":adapter:redis"))
 
     // swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")

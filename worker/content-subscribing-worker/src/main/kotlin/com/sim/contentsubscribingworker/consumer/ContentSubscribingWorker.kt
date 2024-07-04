@@ -10,6 +10,7 @@ import com.sim.subscribingpostusecase.SubscribingPostRemoveFromInboxUsecase
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Component
 
 private val logger= KotlinLogging.logger {  }
@@ -26,7 +27,7 @@ class ContentSubscribingWorker(
         groupId = "content-subscribing-consumer-group",
         concurrency = "3"
     )
-    fun listenOriginalPostMessage(message: ConsumerRecord<String, String>){
+    fun listenOriginalPostMessage(message: ConsumerRecord<String, String>, acknowledgment: Acknowledgment){
         val originalMessage = objectMapper.readValue(message.value(), OriginalPostMessage::class.java)
         val post = MessageConverter.toModel(originalMessage)
         when(originalMessage.operationType){
