@@ -18,4 +18,8 @@ class PostAdapter(private val postJpaRepository: PostJpaRepository) : PostPort {
     override fun findById(id: String): Post? {
         return postJpaRepository.findByIdOrNull(id)?.let { toModel(it) }
     }
+
+    override fun findAllByIds(ids: List<String>): List<Post> {
+        return postJpaRepository.findAllById(ids).map { toModel(it) }
+    }
 }
