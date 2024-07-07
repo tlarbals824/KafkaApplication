@@ -3,6 +3,7 @@ dependencies{
     implementation(project(":usecase:post-resolving-help-usecase"))
     implementation(project(":usecase:inspected-post-usecase"))
     implementation(project(":usecase:subscribing-post-usecase"))
+    implementation(project(":usecase:post-search-usecase"))
 
     implementation(project(":domain"))
 
@@ -12,6 +13,7 @@ dependencies{
     implementation(project(":adapter:chat-gpt-client"))
     implementation(project(":adapter:mongodb"))
     implementation(project(":adapter:redis"))
+    implementation(project(":adapter:elasticsearch"))
 
     // swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")

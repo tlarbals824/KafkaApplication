@@ -4,4 +4,7 @@ data class AutoInspectionResult(
     val status: String, // GOOD or BAD,
     val tags: Array<String>
 ) {
+    fun isGood(): Boolean {
+        return status == "GOOD"
+    }
 }

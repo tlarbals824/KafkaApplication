@@ -1,0 +1,11 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    include:
+      - kafka
+      - meta
+      - es
+      - db
+      - redis

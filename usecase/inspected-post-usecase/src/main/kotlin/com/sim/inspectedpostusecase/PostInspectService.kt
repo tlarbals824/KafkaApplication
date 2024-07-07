@@ -14,7 +14,7 @@ internal class PostInspectService(
     override fun inspectAndGetIfValid(post: Post): InspectedPost? {
         val categoryName = metadataPort.getCategoryNameByCategoryId(post.categoryId)
         val inspectionResult = autoInspectPort.inspect(post, categoryName)
-        if(inspectionResult.status == "GOOD") return null
+        if(!inspectionResult.isGood()) return null
         return InspectedPost(
             post,
             categoryName,

@@ -47,7 +47,7 @@ class ResolvedPostCacheAdapter(
             KeyGenerator.generateKey(Version.ResolvedPost.V1, it)
         }
         return redisTemplate.opsForValue().multiGet(keys)?.mapNotNull {
-            it.let { objectMapper.readValue(it, ResolvedPost::class.java) }
+            it?.let { objectMapper.readValue(it, ResolvedPost::class.java) }
         } ?: emptyList()
     }
 

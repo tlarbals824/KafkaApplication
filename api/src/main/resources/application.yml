@@ -7,3 +7,4 @@ spring:
       - kafka
       - mongo
       - redis
+      - es
