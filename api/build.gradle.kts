@@ -1,5 +1,6 @@
 dependencies{
     implementation(project(":usecase:post-usecase"))
+    implementation(project(":usecase:coupon-usecase"))
     implementation(project(":usecase:post-resolving-help-usecase"))
     implementation(project(":usecase:inspected-post-usecase"))
     implementation(project(":usecase:subscribing-post-usecase"))

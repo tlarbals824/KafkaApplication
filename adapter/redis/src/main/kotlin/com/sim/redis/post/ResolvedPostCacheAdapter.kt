@@ -1,8 +1,10 @@
-package com.sim.redis
+package com.sim.redis.post
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.sim.core.ResolvedPostCachePort
 import com.sim.domain.post.ResolvedPost
+import com.sim.redis.KeyGenerator
+import com.sim.redis.Version
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Component
 import java.time.Duration

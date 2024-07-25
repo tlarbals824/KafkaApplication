@@ -1,14 +1,11 @@
-package com.sim.api
+package com.sim.contentsubscribingworker
 
-import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication(scanBasePackages = ["com.sim"])
-class ApiApplication
+class CouponIssuingWorkerApplication
 
 fun main(args: Array<String>) {
-    runApplication<ApiApplication>(*args)
+    runApplication<CouponIssuingWorkerApplication>(*args)
 }
-
-private val logger = KotlinLogging.logger {}
